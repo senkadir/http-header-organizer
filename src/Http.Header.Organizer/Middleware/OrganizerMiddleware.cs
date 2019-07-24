@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Http.Header.Organizer
@@ -28,13 +26,13 @@ namespace Http.Header.Organizer
 
         public async Task Invoke(HttpContext context)
         {
-            IHeaderDictionary headers = context.Request.Headers;
+            IHeaderDictionary requestHeaders = context.Request.Headers;
 
             var requestHeadersPolicies = policy.HttpHeaders.Where(x => x.IsRequestHeader == true);
 
             foreach (var header in requestHeadersPolicies)
             {
-                bool keyExists = headers.ContainsKey(header.Key);
+                bool keyExists = requestHeaders.ContainsKey(header.Key);
 
                 if (keyExists == false && header.IsRequired == true)
                 {
@@ -46,7 +44,7 @@ namespace Http.Header.Organizer
                     }
                     else
                     {
-                        headers.Add(header.Key, header.DefaultValue);
+                        requestHeaders.Add(header.Key, header.DefaultValue);
                     }
                 }
             }
@@ -57,7 +55,7 @@ namespace Http.Header.Organizer
 
             foreach (var header in responseHeadersPolicies)
             {
-                bool keyExists = headers.ContainsKey(header.Key);
+                bool keyExists = requestHeaders.ContainsKey(header.Key);
 
                 if (keyExists == false && header.IsRequired == true)
                 {

@@ -55,6 +55,48 @@ namespace Http.Header.Organizer
             return this;
         }
 
+        public HeadersPolicyBuilder AddRemoveHeaderToRequests(string key)
+        {
+            bool exists = policy.HttpHeaders.Any(x => x.Key == key);
+
+            if (exists == false)
+            {
+                return this;
+            }
+
+            HttpHeader header = new HttpHeader
+            {
+                Key = key,
+                IsRequestHeader = true,
+                IsRequired = false
+            };
+
+            policy.HttpHeaders.Add(header);
+
+            return this;
+        }
+
+        public HeadersPolicyBuilder AddRemoveHeaderToResponses(string key)
+        {
+            bool exists = policy.HttpHeaders.Any(x => x.Key == key);
+
+            if (exists == false)
+            {
+                return this;
+            }
+
+            HttpHeader header = new HttpHeader
+            {
+                Key = key,
+                IsRequestHeader = false,
+                IsRequired = false
+            };
+
+            policy.HttpHeaders.Add(header);
+
+            return this;
+        }
+
         public HeadersPolicy Build()
         {
             return policy;
