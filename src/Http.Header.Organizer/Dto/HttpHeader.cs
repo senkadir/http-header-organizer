@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Http.Header.Organizer
+﻿namespace Http.Header.Organizer
 {
     public class HttpHeader
     {
@@ -11,7 +7,5 @@ namespace Http.Header.Organizer
         public bool IsRequired { get; set; }
 
         public string DefaultValue { get; set; }
-
-        public bool IsRequestHeader { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -26,44 +27,50 @@ namespace Http.Header.Organizer
 
         public async Task Invoke(HttpContext context)
         {
-            IHeaderDictionary requestHeaders = context.Request.Headers;
-
-            var requestHeadersPolicies = policy.HttpHeaders.Where(x => x.IsRequestHeader == true);
-
-            foreach (var header in requestHeadersPolicies)
-            {
-                bool keyExists = requestHeaders.ContainsKey(header.Key);
-
-                if (keyExists == false && header.IsRequired == true)
-                {
-                    if (string.IsNullOrEmpty(header.DefaultValue))
-                    {
-                        context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                        context.Response.ContentType = @"application/json";
-                        await context.Response.WriteAsync($"The request header key not found in headers.");
-                    }
-                    else
-                    {
-                        requestHeaders.Add(header.Key, header.DefaultValue);
-                    }
-                }
-            }
-
             IHeaderDictionary responseHeaders = context.Response.Headers;
 
-            var responseHeadersPolicies = policy.HttpHeaders.Where(x => x.IsRequestHeader == false);
+            ProcessRemoveHeaders(responseHeaders, policy.RemoveHeaders);
 
-            foreach (var header in responseHeadersPolicies)
-            {
-                bool keyExists = requestHeaders.ContainsKey(header.Key);
-
-                if (keyExists == false && header.IsRequired == true)
-                {
-                    responseHeaders.Add(header.Key, header.DefaultValue);
-                }
-            }
+            await ProcessRequestHeadersAsync(context, policy.HttpRequestHeaders);
 
             await next(context);
+        }
+
+        private void ProcessRemoveHeaders(IHeaderDictionary headers, List<HttpHeader> headerstoRemove)
+        {
+            foreach (var header in headerstoRemove)
+            {
+                if (headers.ContainsKey(header.Key))
+                {
+                    headers.Remove(header.Key);
+                }
+            }
+        }
+
+        private async Task ProcessRequestHeadersAsync(HttpContext context, List<HttpRequestHeader> httpHeaders)
+        {
+            IHeaderDictionary requestHeaders = context.Request.Headers;
+
+            foreach (var header in httpHeaders)
+            {
+                if (requestHeaders.ContainsKey(header.Key))
+                {
+                    return;
+                }
+
+                if (header.IsRequired && string.IsNullOrEmpty(header.DefaultValue))
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    context.Response.ContentType = @"application/json";
+
+                    await context.Response.WriteAsync($"The request header key not found in headers.");
+                }
+
+                if (header.IsRequired && string.IsNullOrEmpty(header.DefaultValue) == false)
+                {
+                    requestHeaders.Add(header.Key, header.DefaultValue);
+                }
+            }
         }
     }
 }
