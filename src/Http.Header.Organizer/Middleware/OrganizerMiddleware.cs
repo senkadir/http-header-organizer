@@ -43,6 +43,8 @@ namespace Http.Header.Organizer
                 if (headers.ContainsKey(header.Key))
                 {
                     headers.Remove(header.Key);
+
+                    logger.LogInformation($"Header removed. Header key: {header.Key}");
                 }
             }
         }
@@ -69,6 +71,8 @@ namespace Http.Header.Organizer
                 if (header.IsRequired && string.IsNullOrEmpty(header.DefaultValue) == false)
                 {
                     requestHeaders.Add(header.Key, header.DefaultValue);
+
+                    logger.LogInformation($"Header not found. Added with default value. {header.Key}:{header.DefaultValue}");
                 }
             }
         }
