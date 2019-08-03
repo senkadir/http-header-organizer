@@ -13,53 +13,51 @@ namespace Http.Header.Organizer
 
         public HeadersPolicyBuilder AddRequiredHeaderToRequests(string key, string defaultValue = "")
         {
-            bool exists = policy.HttpHeaders.Any(x => x.Key == key);
+            bool exists = policy.HttpRequestHeaders.Any(x => x.Key == key);
 
             if (exists)
             {
                 return this;
             }
 
-            HttpHeader header = new HttpHeader
+            HttpRequestHeader header = new HttpRequestHeader
             {
                 Key = key,
                 IsRequired = true,
-                DefaultValue = defaultValue,
-                IsRequestHeader = true
+                DefaultValue = defaultValue
             };
 
-            policy.HttpHeaders.Add(header);
+            policy.HttpRequestHeaders.Add(header);
 
             return this;
         }
 
         public HeadersPolicyBuilder AddCustomHeaderToResponses(string key, string value = "")
         {
-            bool exists = policy.HttpHeaders.Any(x => x.Key == key);
+            bool exists = policy.HttpResponseHeaders.Any(x => x.Key == key);
 
             if (exists)
             {
                 return this;
             }
 
-            HttpHeader header = new HttpHeader
+            HttpResponseHeader header = new HttpResponseHeader
             {
                 Key = $"{key}",
                 DefaultValue = value,
-                IsRequestHeader = false,
                 IsRequired = true
             };
 
-            policy.HttpHeaders.Add(header);
+            policy.HttpResponseHeaders.Add(header);
 
             return this;
         }
 
         public HeadersPolicyBuilder AddRemoveHeaderToRequests(string key)
         {
-            bool exists = policy.HttpHeaders.Any(x => x.Key == key);
+            bool exists = policy.RemoveHeaders.Any(x => x.Key == key);
 
-            if (exists == false)
+            if (exists == true)
             {
                 return this;
             }
@@ -67,32 +65,9 @@ namespace Http.Header.Organizer
             HttpHeader header = new HttpHeader
             {
                 Key = key,
-                IsRequestHeader = true,
-                IsRequired = false
             };
 
-            policy.HttpHeaders.Add(header);
-
-            return this;
-        }
-
-        public HeadersPolicyBuilder AddRemoveHeaderToResponses(string key)
-        {
-            bool exists = policy.HttpHeaders.Any(x => x.Key == key);
-
-            if (exists == false)
-            {
-                return this;
-            }
-
-            HttpHeader header = new HttpHeader
-            {
-                Key = key,
-                IsRequestHeader = false,
-                IsRequired = false
-            };
-
-            policy.HttpHeaders.Add(header);
+            policy.RemoveHeaders.Add(header);
 
             return this;
         }

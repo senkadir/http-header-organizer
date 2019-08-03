@@ -1,13 +1,28 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using System;
 
 namespace Http.Header.Organizer
 {
     public static class Extensions
     {
-        public static IApplicationBuilder UseHeadersOrganizer(this IApplicationBuilder app, HeadersPolicyBuilder configure)
+        public static IApplicationBuilder UseHeadersOrganizer(this IApplicationBuilder app, Action<HeadersPolicyBuilder> configure = null)
         {
-            HeadersPolicy policy = configure.Build();
+            if (configure == null)
+            {
+                throw new ArgumentNullException(nameof(configure));
+            }
 
+            HeadersPolicyBuilder policyBuilder = new HeadersPolicyBuilder();
+
+            configure?.Invoke(policyBuilder);
+
+            var policy = policyBuilder.Build();
+
+            return app.UseMiddleware<OrganizerMiddleware>(policy);
+        }
+
+        public static IApplicationBuilder UseHeadersOrganizer(this IApplicationBuilder app, HeadersPolicy policy)
+        {
             return app.UseMiddleware<OrganizerMiddleware>(policy);
         }
     }

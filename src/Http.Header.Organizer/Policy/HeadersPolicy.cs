@@ -6,7 +6,7 @@ namespace Http.Header.Organizer
     {
         public List<HttpRequestHeader> HttpRequestHeaders { get; } = new List<HttpRequestHeader>();
 
-        public List<HttpRequestHeader> HttpResponseHeaders { get; } = new List<HttpRequestHeader>();
+        public List<HttpResponseHeader> HttpResponseHeaders { get; } = new List<HttpResponseHeader>();
 
         public List<HttpHeader> RemoveHeaders { get; set; } = new List<HttpHeader>();
     }
