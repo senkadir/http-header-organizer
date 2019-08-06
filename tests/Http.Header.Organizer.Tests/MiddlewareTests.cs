@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System.IO;
 using Xunit;
 
 namespace Http.Header.Organizer.Tests
@@ -8,8 +9,10 @@ namespace Http.Header.Organizer.Tests
         [Fact]
         public async void Test_Remove_Request_Header_or_Headers_In_HttpRequest_Async()
         {
-            //Arrange
-            //HttpContext testContext;
+            ////Arrange
+            //DefaultHttpContext testContext = new DefaultHttpContext();
+
+            //testContext.Response.Body = new MemoryStream();
 
             //testContext.Request.Headers.Clear();
 
@@ -26,10 +29,9 @@ namespace Http.Header.Organizer.Tests
 
             //OrganizerMiddleware organizerMiddleware = new OrganizerMiddleware(@delegate, testPolicy);
 
-            //Act
+            ////Act
             //await organizerMiddleware.Invoke(testContext);
 
-            //Assert
             //Assert.Equal(0, testContext.Request.Headers.Count);
         }
     }
