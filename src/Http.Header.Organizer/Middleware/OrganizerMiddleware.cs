@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -25,7 +26,7 @@ namespace Http.Header.Organizer
             policy = headersPolicy;
         }
 
-        public async Task Invoke(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
             try
             {
@@ -66,21 +67,20 @@ namespace Http.Header.Organizer
         {
             IHeaderDictionary requestHeaders = context.Request.Headers;
 
-            foreach (var header in httpHeaders)
+            foreach (var header in httpHeaders.Where(x => x.IsRequired))
             {
                 if (requestHeaders.ContainsKey(header.Key))
                 {
                     continue;
                 }
 
-                if (header.IsRequired && string.IsNullOrEmpty(header.DefaultValue))
+                if (string.IsNullOrEmpty(header.DefaultValue))
                 {
                     logger.LogError($"Required header: {header.Key} not found.");
 
                     throw new Exception($"The request header key not found in headers.");
                 }
-
-                if (header.IsRequired && string.IsNullOrEmpty(header.DefaultValue) == false)
+                else
                 {
                     requestHeaders.Add(header.Key, header.DefaultValue);
 
@@ -100,14 +100,13 @@ namespace Http.Header.Organizer
                     continue;
                 }
 
-                if (header.IsRequired && string.IsNullOrEmpty(header.DefaultValue))
+                if (string.IsNullOrEmpty(header.DefaultValue))
                 {
                     logger.LogError($"Required header: {header.Key} not found.");
 
                     throw new Exception($"The response header key not found in headers.");
                 }
-
-                if (header.IsRequired && string.IsNullOrEmpty(header.DefaultValue) == false)
+                else
                 {
                     context.Response.OnStarting(() =>
                     {

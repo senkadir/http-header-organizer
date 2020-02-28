@@ -35,6 +35,7 @@ namespace Http.Header.Organizer.Tests.Api
             app.UseHeadersOrganizer(x => x.AddRemoveHeaderToRequests("X-Test")
                                           .AddRequiredHeaderToRequests("X-Test2")
                                           .AddRequiredHeaderToRequests("X-Tests", "With default value")
+                                          .AddRequiredHeaderToRequests("X-Tests-2", "With default value")
                                           .AddCustomHeaderToResponses("X-Response-Test", "Response Test"));
 
             app.UseMvc();

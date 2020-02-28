@@ -13,9 +13,7 @@ namespace Http.Header.Organizer
 
         public HeadersPolicyBuilder AddRequiredHeaderToRequests(string key, string defaultValue = "")
         {
-            bool exists = policy.HttpRequestHeaders.Any(x => x.Key == key);
-
-            if (exists)
+            if (policy.HttpRequestHeaders.Any(x => x.Key == key))
             {
                 return this;
             }
@@ -34,9 +32,7 @@ namespace Http.Header.Organizer
 
         public HeadersPolicyBuilder AddCustomHeaderToResponses(string key, string value = "")
         {
-            bool exists = policy.HttpResponseHeaders.Any(x => x.Key == key);
-
-            if (exists)
+            if (policy.HttpResponseHeaders.Any(x => x.Key == key))
             {
                 return this;
             }
@@ -55,9 +51,7 @@ namespace Http.Header.Organizer
 
         public HeadersPolicyBuilder AddRemoveHeaderToRequests(string key)
         {
-            bool exists = policy.RemoveHeaders.Any(x => x.Key == key);
-
-            if (exists == true)
+            if (policy.RemoveHeaders.Any(x => x.Key == key))
             {
                 return this;
             }
