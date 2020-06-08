@@ -1,8 +1,6 @@
 # http-header-organizer
 Http Organizer is a middleware checking all Http Requests and Http Responses to decide to apply your policies.
 
-[![Build Status](https://senabdulkadir.visualstudio.com/http-header-organizer/_apis/build/status/senkadir.http-header-organizer?branchName=master)](https://senabdulkadir.visualstudio.com/http-header-organizer/_build/latest?definitionId=2&branchName=master)
-
 # Usage
 
 Inject organizer to middleware with:
