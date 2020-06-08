@@ -66,4 +66,8 @@ steps:
     command: push
     nuGetFeedType: external
     publishFeedCredentials: 'nuget.http.header.organizer.connection'
+    versioningScheme: 'byPrereleaseNumber'
+    majorVersion: '1'
+    minorVersion: '0'
+    patchVersion: '0'
   continueOnError: false
