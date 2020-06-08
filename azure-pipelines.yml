@@ -51,3 +51,19 @@ steps:
     PathtoPublish: '$(build.artifactstagingdirectory)'
     ArtifactName: '$(Build.BuildNumber)'
   condition: succeededOrFailed()
+
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet pack'
+  inputs:
+    command: pack
+    nobuild: true
+    includesymbols: false
+    versioningScheme: byBuildNumber
+
+- task: NuGetCommand@2
+  displayName: 'push to nuget'
+  inputs:
+    command: push
+    nuGetFeedType: external
+    publishFeedCredentials: 'nuget.http.header.organizer.connection'
+  continueOnError: false
