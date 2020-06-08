@@ -62,6 +62,7 @@ steps:
     majorVersion: '1'
     minorVersion: '0'
     patchVersion: '0'
+    packagesToPack: $(project)
 
 - task: NuGetCommand@2
   displayName: 'push to nuget'
