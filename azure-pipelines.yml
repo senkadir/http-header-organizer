@@ -63,6 +63,7 @@ steps:
     minorVersion: '0'
     patchVersion: '0'
     packagesToPack: $(project)
+    NuspecFile: 'src/Http.Header.Organizer/package.nuspec'
 
 - task: NuGetCommand@2
   displayName: 'push to nuget'

@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3</TargetFramework>
-    <NuspecFile>$(SolutionDir)\src\Http.Header.Organizer\package.nuspec</NuspecFile>
   </PropertyGroup>
 
   <ItemGroup>
