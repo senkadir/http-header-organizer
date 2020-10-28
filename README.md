@@ -1,7 +1,7 @@
 # http-header-organizer
 Http Organizer is a middleware checking all Http Requests and Http Responses to decide to apply your policies.
 
-#Package
+# Package
 
 [Nuget package](https://www.nuget.org/packages/Http.Header.Organizer)
 
