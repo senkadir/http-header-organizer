@@ -27,4 +27,4 @@ jobs:
       run: dotnet test -c Release --no-build --verbosity normal
 
     - name: Pack
-      run: dotnet pack *Http.Header.Organizer.csproj -c Release -o publish --no-build --verbosity normal 
+      run: dotnet pack -c Release -o publish --no-build --verbosity normal 
