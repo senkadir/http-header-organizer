@@ -21,13 +21,13 @@
 
     <description>This library organize your http request and response header. </description>
 
-    <copyright>Copyright ©2019 Abdulkadir Sen</copyright>
+    <copyright>Copyright ©2021 Abdulkadir Sen</copyright>
 
     <tags>http, http header, http request, http response, request, response, header rule, header organization</tags>
 
     <dependencies>
       <dependency id="Microsoft.Extensions.Logging.Abstractions" version="2.2.0" />
-      <dependency id="Microsoft.AspNetCore.Http.Abstractions" version="2.2.0" />
+      <dependency id="Microsoft.AspNetCore.Http.Abstractions" version="5.0.0" />
     </dependencies>
   </metadata>
 </package>
