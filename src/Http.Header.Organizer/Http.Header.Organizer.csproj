@@ -1,13 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    
-    <PackageId>Http.Header.Organizer</PackageId>
-    <Version>1.0.0</Version>
-    <PackageTags>Http;Http Headers; Http Request Header; Http Response Header; Http Header Organize</PackageTags>
+    <Title>Http Header Organizer</Title>
+    <Description>Http Organizer is a middleware checking all Http Requests and Http Responses to decide to apply your policies.</Description>
     <Authors>Abdulkadir Sen</Authors>
-    <Company>Abdulkadir Sen</Company>
+    <Copyright>Copyright (c) 2021 Abdulkadir Sen</Copyright>
+
+    <RootNamespace>Http.Header.Organizer</RootNamespace>
+    <AssemblyName>Http.Header.Organizer</AssemblyName>
+
+    <!-- NuGet settings -->
+    <PackageId>Http.Header.Organizer</PackageId>
+    <PackageTags>Http;Http Headers; Http Request Header; Http Response Header; Http Header Organize</PackageTags>
+    <PackageReleaseNotes>https://github.com/senkadir/http-header-organizer</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/senkadir/http-header-organizer</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/senkadir/http-header-organizer</RepositoryUrl>
+
+    <!-- SourceLink settings -->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>false</EmbedUntrackedSources>
+
   </PropertyGroup>
 
   <ItemGroup>
