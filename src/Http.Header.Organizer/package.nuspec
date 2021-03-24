@@ -24,6 +24,8 @@
     <copyright>Copyright ©2021 Abdulkadir Sen</copyright>
 
     <tags>http, http header, http request, http response, request, response, header rule, header organization</tags>
+    
+    <repository type="git" url="https://github.com/senkadir/http-header-organizer" />
 
     <dependencies>
       <dependency id="Microsoft.Extensions.Logging.Abstractions" version="2.2.0" />
