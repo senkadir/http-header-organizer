@@ -27,7 +27,7 @@ jobs:
       run: dotnet test -c Release --no-build --verbosity normal
 
     - name: Pack
-      run: dotnet pack -c Release -o publish --no-build --verbosity normal 
+      run: dotnet pack -c Release -o publish -p:NuspecFile=./src/Http.Header.Organizer/package.nuspec --no-build --verbosity normal 
       
     - name: Push
       run: dotnet nuget push ./publish/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
