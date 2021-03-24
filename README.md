@@ -15,9 +15,9 @@ Create your header policy with:
 
 ```csharp
 app.UseHeadersOrganizer(x => x.AddRemoveHeaderToRequests("X-Test")
-                                          .AddRequiredHeaderToRequests("X-Test2")
-                                          .AddRequiredHeaderToRequests("X-Test-With-Default-Value", "With default value")
-                                          .AddCustomHeaderToResponses("X-Response-Test", "Response Test"));
+                              .AddRequiredHeaderToRequests("X-Test2")
+                              .AddRequiredHeaderToRequests("X-Test-With-Default-Value", "With default value")
+                              .AddCustomHeaderToResponses("X-Response-Test", "Response Test"));
 ```
 
 That's it. Organizer will follow all requests and responses to apply your policy.
