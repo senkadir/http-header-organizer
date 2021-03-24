@@ -20,7 +20,7 @@ app.UseHeadersOrganizer(x => x.AddRemoveHeaderToRequests("X-Test")
                               .AddCustomHeaderToResponses("X-Response-Test", "Response Test"));
 ```
 
-That's it. Organizer will follow all requests and responses to apply your policy.
+That's it. Organizer will follow all requests and responses to apply your policies.
 
 In this example:
 
