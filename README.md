@@ -1,5 +1,5 @@
 # http-header-organizer
-Http Organizer is a middleware checking all Http Requests and Http Responses to decide to apply your policies.
+HTTP Organizer is a middleware that checks all HTTP requests and responses in order to determine which policies to apply.
 
 # Package
 
@@ -31,3 +31,6 @@ In this example:
 3. Organizer add "X-Test-With-Default-Value" required header policy with default value. If header not found in http request will be added with value: "With default value".
 
 4. Organizer add "X-Response-Test" header to all responses with "Response Test" value.
+
+
+###Developed by Abdulkadir Sen.
