@@ -9,7 +9,7 @@
     <RootNamespace>Http.Header.Organizer</RootNamespace>
     <AssemblyName>Http.Header.Organizer</AssemblyName>
     
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReadmeFile>../../README.md</PackageReadmeFile>
 
     <!-- NuGet settings -->
     <PackageId>Http.Header.Organizer</PackageId>
