@@ -4,10 +4,12 @@
     <Title>Http Header Organizer</Title>
     <Description>Http Organizer is a middleware checking all Http Requests and Http Responses to decide to apply your policies.</Description>
     <Authors>Abdulkadir Sen</Authors>
-    <Copyright>Copyright (c) 2021 Abdulkadir Sen</Copyright>
+    <Copyright>Copyright (c) 2023 Abdulkadir Sen</Copyright>
 
     <RootNamespace>Http.Header.Organizer</RootNamespace>
     <AssemblyName>Http.Header.Organizer</AssemblyName>
+    
+    <PackageReadmeFile>README.md</PackageReadmeFile>
 
     <!-- NuGet settings -->
     <PackageId>Http.Header.Organizer</PackageId>
