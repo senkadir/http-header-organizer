@@ -8,9 +8,7 @@
 
     <RootNamespace>Http.Header.Organizer</RootNamespace>
     <AssemblyName>Http.Header.Organizer</AssemblyName>
-    
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-
+   
     <!-- NuGet settings -->
     <PackageId>Http.Header.Organizer</PackageId>
     <PackageTags>Http;Http Headers; Http Request Header; Http Response Header; Http Header Organize</PackageTags>
